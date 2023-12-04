@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: local
+
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: changeit
+    keyStoreType: PKCS12
+    keyAlias: tomcat
+    enabled: true

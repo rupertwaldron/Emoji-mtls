@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  #service 3: definition of your spring-boot app
+  emoji-app:                        #it is just a name, which will be used only in this file.
+#    image: 226241359626.dkr.ecr.eu-west-2.amazonaws.com/ruppyrup-images:emoji    #name of the image after dockerfile executes
+    image: emoji-translator   #name of the image after dockerfile executes
+#    environment:
+#      MONGO_USERNAME: "${ENV_MONGO_USERNAME}"
+#      MONGO_PASSWORD: "${ENV_MONGO_PASSWORD}"
+#      SECURITY_USERNAME: "${ENV_SECURITY_USERNAME}"
+#      SECURITY_PASSWORD: "${ENV_SECURITY_PASSWORD}"
+    build:
+      context: .                         #docker file path (. means root directory)
+      dockerfile: Dockerfile              #docker file name
+    ports:
+      - 443:443           #docker containter port with your os port
+

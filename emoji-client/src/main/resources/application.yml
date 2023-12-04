@@ -1,0 +1,6 @@
+server:
+  port: 8080
+
+trust:
+  store: classpath:/myTrustStore
+  password: password

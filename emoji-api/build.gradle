@@ -1,0 +1,103 @@
+plugins {
+    id 'application'
+    id 'com.dorongold.task-tree' version "2.1.1"
+    id 'maven-publish'
+    id 'org.springframework.boot' version '2.7.16'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.ruppyrup'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+application {
+    mainClass = 'com.ruppyrup.Application'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+ext {
+    junitJupiterVersion = '5.9.1'
+}
+
+sourceSets {
+    integrationTest {
+        java {
+            srcDir "$projectDir/src/integrationTest/java"
+        }
+        resources {
+            srcDir "$projectDir/src/integrationTest/resources"
+        }
+
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+}
+
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+tasks.register('integrationTest', Test) {
+    group 'verification'
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'net.fellbaum:jemoji:1.1.5'
+    testImplementation platform("org.junit:junit-bom:${junitJupiterVersion}")
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    integrationTestImplementation 'org.springframework.boot:spring-boot-starter-test'
+    integrationTestImplementation 'org.apache.httpcomponents:httpclient:4.5.14'
+
+    modules {
+        module('org.springframework.boot:spring-boot-starter-logging') {
+            replacedBy 'org.springframework.boot:spring-boot-starter-log4j2', 'Use log4j instead of logback'
+        }
+    }
+
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
+
+integrationTest {
+    group 'verification'
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+check.dependsOn integrationTest
+
+jar {
+    enabled = false
+}
+
+wrapper {
+    gradleVersion '8.1.1'
+    setDistributionType Wrapper.DistributionType.ALL
+}
+
+publishing {
+    publications {
+        myDistribution(MavenPublication) {
+            artifact bootJar
+//            artifact shadowJar.archiveFile
+        }
+    }
+}
