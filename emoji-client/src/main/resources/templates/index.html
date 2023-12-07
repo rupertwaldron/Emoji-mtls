@@ -6,7 +6,7 @@
 <form action="save" method="post">
     <table>
         <tr>
-            <td><label for="user-name">User Name</label></td>
+            <td><label for="noteData-name">User Name</label></td>
             <td><input type="text" name="name"></input></td>
         </tr>
         <tr>
@@ -28,15 +28,15 @@
 <table>
     <tr>
         <td><h4>User Name: </h4></td>
-        <td><h4 th:text="${user?.name}"></h4></td>
+        <td><h4 th:text="${noteData?.name}"></h4></td>
     </tr>
     <tr>
         <td><h4>Email ID: </h4></td>
-        <td><h4 th:text="${user?.email}"></h4></td>
+        <td><h4 th:text="${noteData?.email}"></h4></td>
     </tr>
     <tr>
         <td><h4>Note: </h4></td>
-        <td><h4 th:text="${user?.note}"></h4></td>
+        <td><h4 th:text="${noteData?.note}"></h4></td>
     </tr>
 </table>
 </body>

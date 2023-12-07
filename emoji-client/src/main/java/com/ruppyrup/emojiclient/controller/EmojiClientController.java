@@ -1,9 +1,8 @@
 package com.ruppyrup.emojiclient.controller;
 
-import com.ruppyrup.emojiclient.model.User;
+import com.ruppyrup.emojiclient.model.NoteData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,15 +28,23 @@ public class EmojiClientController {
 
     @GetMapping("/")
     public String index(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+        NoteData noteData = new NoteData();
+        model.addAttribute("noteData", noteData);
         return "index2";
     }
     @PostMapping("/encrypt")
-    public ModelAndView encrypt(@ModelAttribute User user) {
+    public ModelAndView encrypt(@ModelAttribute NoteData noteData) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index2");
-        modelAndView.addObject("user", user);
+        modelAndView.addObject("noteData", noteData);
+        return modelAndView;
+    }
+
+    @PostMapping("/decrypt")
+    public ModelAndView decrypt(@ModelAttribute NoteData noteData) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index2");
+        modelAndView.addObject("noteData", noteData);
         return modelAndView;
     }
 
