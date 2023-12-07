@@ -36,6 +36,9 @@ public class EmojiClientController {
     public ModelAndView encrypt(@ModelAttribute NoteData noteData) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index2");
+        String encrypted = restTemplate.getForObject("https://localhost:8443/emoji/encode/" + noteData.getDecrypted(),
+                String.class);
+        noteData.setEncrypted(encrypted);
         modelAndView.addObject("noteData", noteData);
         return modelAndView;
     }
@@ -44,6 +47,9 @@ public class EmojiClientController {
     public ModelAndView decrypt(@ModelAttribute NoteData noteData) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index2");
+        String decrypted = restTemplate.getForObject("https://localhost:8443/emoji/decode/" + noteData.getEncrypted(),
+                String.class);
+        noteData.setEncrypted(decrypted);
         modelAndView.addObject("noteData", noteData);
         return modelAndView;
     }
