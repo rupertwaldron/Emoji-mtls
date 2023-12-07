@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration Form</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=email], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <div style="border-style:solid; width:500px">
+        <h1>User Registration</h1>
+        <form
+                role="form"
+                method="post"
+                th:action="@{/emoji-client/encrypt}"
+                th:object="${user}"
+        >
+            <label>Full name:</label>
+            <input type="text" th:field = "*{name}" />
+            <br />
+            <label>E-mail:</label>
+            <input type="email" th:field = "*{email}" />
+            <br />
+
+            <label>Note:</label>
+            <textarea rows="5" cols="25" th:field="*{note}">
+            </textarea>
+            <br />
+            <button type="submit">Encrypt</button>
+        </form>
+    </div>
+    <div style="border-style:solid; width:500px">
+        <h1>Registered User Information</h1>
+        <div>
+            <p>Name: <strong th:text="${user?.name}"></strong></p>
+            <p>Email: <strong th:text="${user?.email}"></strong></p>
+            <p>Password: <strong th:text="${user?.note}"></strong></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,13 +29,15 @@ public class EmojiClientController {
     }
 
     @GetMapping("/")
-    public String index() {
-        return "index";
+    public String index(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "index2";
     }
-    @PostMapping("/save")
-    public ModelAndView save(@ModelAttribute User user) {
+    @PostMapping("/encrypt")
+    public ModelAndView encrypt(@ModelAttribute User user) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("index2");
         modelAndView.addObject("user", user);
         return modelAndView;
     }
