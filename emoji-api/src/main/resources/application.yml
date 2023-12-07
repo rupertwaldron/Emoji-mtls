@@ -10,3 +10,8 @@ server:
     keyStoreType: PKCS12
     keyAlias: tomcat
     enabled: true
+    trust-store-password: password
+    trust-store: classpath:emojiapi.truststore
+    trust-store-type: JKS
+    client-auth: none
+#    client-auth: need

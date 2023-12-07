@@ -1,21 +1,23 @@
 package com.ruppyrup.emojiclient.controller;
 
+import com.ruppyrup.emojiclient.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 
-@RestController
+@Controller
 @RequestMapping("emoji-client")
 public class EmojiClientController {
-
-    @Value("${server.port}")
-    private String port;
 
     private final RestTemplate restTemplate;
 
@@ -26,8 +28,15 @@ public class EmojiClientController {
     }
 
     @GetMapping("/")
-    public String hello() {
-        return "Hello world";
+    public String index() {
+        return "index";
+    }
+    @PostMapping("/save")
+    public ModelAndView save(@ModelAttribute User user) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
     @GetMapping("/encode/{text}")

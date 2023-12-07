@@ -4,3 +4,8 @@ server:
 trust:
   store: classpath:/myTrustStore
   password: password
+
+spring:
+  thymeleaf:
+    cache: false
+    suffix: .html
