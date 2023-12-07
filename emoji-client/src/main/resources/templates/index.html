@@ -14,8 +14,12 @@
             <td><input type="text" name="email"></input></td>
         </tr>
         <tr>
+            <td><label for="note">Note</label></td>
+            <td><input type="text" name="note"></input></td>
+        </tr>
+        <tr>
             <td></td>
-            <td><input type="submit" value="Submit"></input></td>
+            <td><input type="submit" value="Encrypt"></input></td>
         </tr>
     </table>
 </form>
@@ -29,6 +33,10 @@
     <tr>
         <td><h4>Email ID: </h4></td>
         <td><h4 th:text="${user?.email}"></h4></td>
+    </tr>
+    <tr>
+        <td><h4>Note: </h4></td>
+        <td><h4 th:text="${user?.note}"></h4></td>
     </tr>
 </table>
 </body>
