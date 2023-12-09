@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class NoteData {
     String encrypted;
-    String decrypted;
+    String plainText;
 }

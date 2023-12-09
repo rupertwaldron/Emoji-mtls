@@ -6,7 +6,9 @@ import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContextBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -26,14 +28,15 @@ import java.security.cert.CertificateException;
 @Configuration
 public class EmojiClientConfig {
 
-    @Value("${trust.store}")
+    @Value("${trust.store:}")
     private Resource trustStore;
 
-    @Value("${trust.password}")
+    @Value("${trust.password:}")
     private String trustStorePassword;
 
     @Bean
-    public RestTemplate restTemplate() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException,
+    @Qualifier("https")
+    public RestTemplate httpsRestTemplate() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException,
             CertificateException, MalformedURLException, IOException {
 
         SSLContext sslContext = new SSLContextBuilder()
@@ -46,4 +49,9 @@ public class EmojiClientConfig {
         return new RestTemplate(requestFactory);
     }
 
+    @Bean
+    @Qualifier("http")
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }

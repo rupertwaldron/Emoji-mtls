@@ -42,12 +42,12 @@
                 th:action="@{/emoji-client/encrypt}"
                 th:object="${noteData}"
         >
-            <textarea rows="5" cols="25" th:field="*{decrypted}">
+            <textarea rows="5" cols="25" th:field="*{plainText}">
             </textarea>
             <br/>
             <button type="submit">Encrypt</button>
         </form>
-        <p>Decrypted: <strong th:text="${noteData?.encrypted}"></strong></p>
+<!--        <p>Decrypted: <strong th:text="${noteData?.encrypted}"></strong></p>-->
     </div>
     <div style="border-style:solid; width:500px">
         <h1>Encrypted Data</h1>
@@ -63,7 +63,7 @@
                 <br/>
                 <button type="submit">Decrypt</button>
             </form>
-            <p>Encrypted: <strong th:text="${noteData?.decrypted}"></strong></p>
+<!--            <p>Encrypted: <strong th:text="${noteData?.decrypted}"></strong></p>-->
         </div>
     </div>
 </div>

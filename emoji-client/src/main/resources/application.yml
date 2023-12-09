@@ -1,11 +1,34 @@
 server:
   port: 8080
 
-trust:
-  store: classpath:/myTrustStore
-  password: password
-
 spring:
   thymeleaf:
     cache: false
     suffix: .html
+
+trust:
+  store: classpath:/myTrustStore
+  password: password
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: https
+
+emoji:
+  port: 8443
+  scheme: https
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: http
+
+emoji:
+  port: 8081
+  scheme: http
