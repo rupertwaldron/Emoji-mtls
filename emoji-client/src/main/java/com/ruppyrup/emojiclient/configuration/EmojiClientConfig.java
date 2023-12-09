@@ -1,6 +1,7 @@
 package com.ruppyrup.emojiclient.configuration;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -24,21 +26,23 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 
-
+@Slf4j
 @Configuration
 public class EmojiClientConfig {
 
-    @Value("${trust.store:}")
+    @Value("${trust.store}")
     private Resource trustStore;
 
-    @Value("${trust.password:}")
+    @Value("${trust.password}")
     private String trustStorePassword;
 
     @Bean
-    @Qualifier("https")
+    @Profile("https")
     public RestTemplate httpsRestTemplate() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException,
             CertificateException, MalformedURLException, IOException {
 
+
+        log.info("Creating https resttemplate");
         SSLContext sslContext = new SSLContextBuilder()
                 .loadTrustMaterial(trustStore.getURL(), trustStorePassword.toCharArray())
                 .build();
@@ -50,8 +54,9 @@ public class EmojiClientConfig {
     }
 
     @Bean
-    @Qualifier("http")
+    @Profile("http")
     public RestTemplate restTemplate() {
+        log.info("Creating http resttemplate");
         return new RestTemplate();
     }
 }
