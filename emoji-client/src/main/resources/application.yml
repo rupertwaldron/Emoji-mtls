@@ -7,7 +7,7 @@ spring:
     suffix: .html
 
 trust:
-  store: classpath:/myTrustStore
+  store: classpath:/emojiclient.truststore
   password: password
 
 ---

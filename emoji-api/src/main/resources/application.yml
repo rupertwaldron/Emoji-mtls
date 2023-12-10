@@ -5,13 +5,13 @@ spring:
 server:
   port: 8443
   ssl:
-    key-store: classpath:keystore.p12
-    key-store-password: changeit
+    key-store: classpath:server-keystore.p12
+    key-store-password: password
     keyStoreType: PKCS12
-    keyAlias: tomcat
+    keyAlias: emoji-api
     enabled: true
-    trust-store-password: password
-    trust-store: classpath:emojiapi.truststore
-    trust-store-type: JKS
+#    trust-store-password: password
+#    trust-store: classpath:emojiapi.truststore
+#    trust-store-type: JKS
     client-auth: none
 #    client-auth: need
