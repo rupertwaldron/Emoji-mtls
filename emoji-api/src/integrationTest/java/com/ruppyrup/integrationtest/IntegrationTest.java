@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
     webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
     properties = {
         "server.ssl.enabled=true",
-        "trust.store=classpath:/myTrustStore",
+        "trust.store=classpath:/emojiclient.truststore",
         "trust.password: password"
     }
 )
