@@ -2,7 +2,7 @@ plugins {
     id 'application'
     id 'com.dorongold.task-tree' version "2.1.1"
     id 'maven-publish'
-    id 'org.springframework.boot' version '2.7.16'
+    id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
 }
 
@@ -21,7 +21,7 @@ application {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -63,7 +63,7 @@ dependencies {
     testImplementation platform("org.junit:junit-bom:${junitJupiterVersion}")
     testImplementation 'org.junit.jupiter:junit-jupiter'
     integrationTestImplementation 'org.springframework.boot:spring-boot-starter-test'
-    integrationTestImplementation 'org.apache.httpcomponents:httpclient:4.5.14'
+//    integrationTestImplementation 'org.apache.httpcomponents:httpclient:4.5.14'
 
     modules {
         module('org.springframework.boot:spring-boot-starter-logging') {
@@ -90,7 +90,7 @@ jar {
 }
 
 wrapper {
-    gradleVersion '8.1.1'
+    gradleVersion '8.5'
     setDistributionType Wrapper.DistributionType.ALL
 }
 
