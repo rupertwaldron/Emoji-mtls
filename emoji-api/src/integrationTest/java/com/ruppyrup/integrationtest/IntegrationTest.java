@@ -15,9 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
     classes = {IntegrationTestConfig.class, EmojiApiApplication.class},
     webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
     properties = {
-        "server.ssl.bundle=emoji-test-client",
-//        "trust.store=classpath:/emojiclient.truststore",
-//        "trust.password: password"
+        "spring.ssl.bundle.pem.emoji-test-client.truststore.certificate=classpath:emojiapicertlocal.pem"
     }
 )
 class IntegrationTest {
