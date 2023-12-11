@@ -11,7 +11,7 @@ spring:
       pem:
         emoji-client:
           truststore:
-            certificate: "classpath:itcert.pem"
+            certificate: "classpath:emojiapicertlocal.pem"
 
 
 #  ssl:

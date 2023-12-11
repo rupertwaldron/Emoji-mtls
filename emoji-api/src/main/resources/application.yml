@@ -9,7 +9,7 @@ spring:
           key:
             alias: "emoji-api"
           keystore:
-            location: "classpath:server-keystore.p12"
+            location: "classpath:server-keystore-local.p12"
             password: "password"
             type: "PKCS12"
 
