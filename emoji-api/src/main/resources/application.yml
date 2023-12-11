@@ -13,32 +13,10 @@ spring:
             password: "password"
             type: "PKCS12"
 
-#        emoji-test-client:
-#          key:
-#            alias: "emoji-api"
-#          keystore:
-#            location: "classpath:server-keystore.p12"
-#            password: "password"
-#            type: "PKCS12"
-##            certificate: "classpath:itcert.pem"
-##            private-key: "classpath:it-private-key.pem"
-##            private-key-password: "password"
-#          truststore:
-#            location: "classpath:emojiclient.truststore"
-##           certificate: "classpath:emojiapicert.pem"
-
 server:
   port: 8443
   ssl:
-#    key-store: classpath:server-keystore.p12
-#    key-store-password: password
-#    keyStoreType: PKCS12
-#    keyAlias: emoji-api
-#    enabled: true
     bundle: "emoji-api"
     enabled-protocols: TLSv1.3
-##    trust-store-password: password
-##    trust-store: classpath:emojiapi.truststore
-##    trust-store-type: JKS
     client-auth: none
 ##    client-auth: need

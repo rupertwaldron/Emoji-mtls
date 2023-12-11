@@ -13,19 +13,6 @@ spring:
           truststore:
             certificate: "classpath:emojiapicertlocal.pem"
 
-
-#  ssl:
-#    bundle:
-#      jks:
-#        emoji-client:
-#          truststore:
-#            location: "classpath:emojiclient.truststore"
-#            password: "password"
-
-#trust:
-#  store: classpath:/emojiclient.truststore
-#  password: password
-
 ---
 
 spring:
