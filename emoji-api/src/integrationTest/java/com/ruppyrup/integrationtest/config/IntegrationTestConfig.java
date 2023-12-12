@@ -12,26 +12,6 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class IntegrationTestConfig {
 
-//    @Value("${trust.store}")
-//    private Resource trustStore;
-//
-//    @Value("${trust.password}")
-//    private String trustStorePassword;
-
-//    @Bean("integrationRestTemplate")
-//    public RestTemplate integrationRestTemplate() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException,
-//            CertificateException, MalformedURLException, IOException {
-//
-//        SSLContext sslContext = new SSLContextBuilder()
-//                .loadTrustMaterial(trustStore.getURL(), trustStorePassword.toCharArray())
-//                .build();
-//        SSLConnectionSocketFactory sslConFactory = new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE);
-//
-//        CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(sslConFactory).build();
-//        ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-//        return new RestTemplate(requestFactory);
-//    }
-
     @Bean("integrationRestTemplate")
     public RestTemplate integrationRestTemplate(RestTemplateBuilder restTemplateBuilder, SslBundles sslBundles) {
         return restTemplateBuilder.setSslBundle(sslBundles.getBundle("emoji-test-client")).build();
