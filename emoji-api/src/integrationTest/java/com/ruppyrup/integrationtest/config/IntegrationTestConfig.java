@@ -16,5 +16,4 @@ public class IntegrationTestConfig {
     public RestTemplate integrationRestTemplate(RestTemplateBuilder restTemplateBuilder, SslBundles sslBundles) {
         return restTemplateBuilder.setSslBundle(sslBundles.getBundle("emoji-test-client")).build();
     }
-
 }
