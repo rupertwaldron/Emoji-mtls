@@ -12,11 +12,15 @@ spring:
             location: "classpath:server-keystore-local.p12"
             password: "password"
             type: "PKCS12"
+          truststore:
+            type: "JKS"
+            location: "classpath:emoji-api.truststore"
+            password: "password"
 
 server:
   port: 8443
   ssl:
     bundle: "emoji-api"
-    enabled-protocols: TLSv1.3
-    client-auth: none
-##    client-auth: need
+#    enabled-protocols: TLSv1.3
+#    client-auth: none
+    client-auth: need
