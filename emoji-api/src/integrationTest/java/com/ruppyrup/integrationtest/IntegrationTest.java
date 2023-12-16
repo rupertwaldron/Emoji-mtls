@@ -15,8 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
     classes = {IntegrationTestConfig.class, EmojiApiApplication.class},
     webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
     properties = {
-        "mtls.enabled=true",
-        "mtls.private-key-password=password"
+            "spring.ssl.bundle.pem.emoji-test-client.truststore.certificate=classpath:emojiapicertlocal.pem",
+            "spring.ssl.bundle.pem.emoji-test-client.keystore.certificate=classpath:emojiclientcertlocal.pem",
+            "spring.ssl.bundle.pem.emoji-test-client.keystore.private-key=classpath:client-private-key.pem",
+            "spring.ssl.bundle.pem.emoji-test-client.keystore.private-key-password=password"
     }
 )
 class IntegrationTest {
