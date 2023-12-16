@@ -12,8 +12,8 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class IntegrationTestConfig {
 
-    @Bean("integrationRestTemplate")
-    public RestTemplate integrationRestTemplate(RestTemplateBuilder restTemplateBuilder, SslBundles sslBundles) {
-        return restTemplateBuilder.setSslBundle(sslBundles.getBundle("emoji-test-client")).build();
-    }
+//    @Bean("integrationRestTemplate")
+//    public RestTemplate integrationRestTemplate(RestTemplateBuilder restTemplateBuilder, SslBundles sslBundles) {
+//        return restTemplateBuilder.setSslBundle(sslBundles.getBundle("emoji-test-client")).build();
+//    }
 }

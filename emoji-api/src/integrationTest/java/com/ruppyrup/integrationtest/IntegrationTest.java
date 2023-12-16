@@ -15,10 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
     classes = {IntegrationTestConfig.class, EmojiApiApplication.class},
     webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
     properties = {
-        "spring.ssl.bundle.pem.emoji-test-client.truststore.certificate=classpath:emojiapicertlocal.pem",
-        "spring.ssl.bundle.pem.emoji-test-client.keystore.certificate=classpath:emojiclientcertlocal.pem",
-        "spring.ssl.bundle.pem.emoji-test-client.keystore.private-key=classpath:client-private-key.pem",
-        "spring.ssl.bundle.pem.emoji-test-client.keystore.private-key-password=password"
+        "mtls.enabled=true",
+        "mtls.private-key-password=password"
     }
 )
 class IntegrationTest {
@@ -26,12 +24,12 @@ class IntegrationTest {
     @Value(value = "${server.port}")
     private int port;
 
-    private final RestTemplate integrationRestTemplate;
+    private final RestTemplate mtlsRestTemplate;
     private String encodedString;
     private String decodedString;
 
-    IntegrationTest(@Qualifier("integrationRestTemplate") RestTemplate integrationRestTemplate) {
-        this.integrationRestTemplate = integrationRestTemplate;
+    IntegrationTest(@Qualifier("mtlsRestTemplate") RestTemplate mtlsRestTemplate) {
+        this.mtlsRestTemplate = mtlsRestTemplate;
     }
 
 
@@ -43,13 +41,13 @@ class IntegrationTest {
 
     @Test
     public void messageShouldBeEncodedCorrectly() throws Exception {
-        assertThat(this.integrationRestTemplate.getForObject("https://localhost:" + port + "/emoji/encode/" + decodedString,
+        assertThat(mtlsRestTemplate.getForObject("https://localhost:" + port + "/emoji/encode/" + decodedString,
                 String.class)).contains(encodedString);
     }
 
     @Test
     public void messageShouldBeDecodedCorrectly() throws Exception {
-        assertThat(this.integrationRestTemplate.getForObject("https://localhost:" + port + "/emoji/decode/" + encodedString,
+        assertThat(mtlsRestTemplate.getForObject("https://localhost:" + port + "/emoji/decode/" + encodedString,
                 String.class)).contains(decodedString);
     }
 }
