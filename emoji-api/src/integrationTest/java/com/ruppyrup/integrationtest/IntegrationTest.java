@@ -1,7 +1,6 @@
 package com.ruppyrup.integrationtest;
 
 import com.ruppyrup.emojiapi.EmojiApiApplication;
-import com.ruppyrup.integrationtest.config.IntegrationTestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,13 +11,11 @@ import org.springframework.web.client.RestTemplate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(
-    classes = {IntegrationTestConfig.class, EmojiApiApplication.class},
+    classes = {EmojiApiApplication.class},
     webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
     properties = {
-            "spring.ssl.bundle.pem.emoji-test-client.truststore.certificate=classpath:emojiapicertlocal.pem",
-            "spring.ssl.bundle.pem.emoji-test-client.keystore.certificate=classpath:emojiclientcertlocal.pem",
-            "spring.ssl.bundle.pem.emoji-test-client.keystore.private-key=classpath:client-private-key.pem",
-            "spring.ssl.bundle.pem.emoji-test-client.keystore.private-key-password=password"
+            "mtls.enabled=true",
+            "mtls.private-key-passwd=password"
     }
 )
 class IntegrationTest {
