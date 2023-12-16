@@ -32,10 +32,6 @@ ext {
 sourceSets {
     integrationTest {
         java {
-            srcDir "$projectDir/src/integrationTest/java"
-        }
-        resources {
-            srcDir "$projectDir/src/integrationTest/resources"
         }
 
         compileClasspath += main.output + test.output
