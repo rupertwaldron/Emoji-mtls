@@ -6,17 +6,6 @@ spring:
     cache: false
     suffix: .html
 
-#  ssl:
-#    bundle:
-#      pem:
-#        emoji-api:
-#          keystore:
-#            certificate: "classpath:consumercert.pem"
-#            private-key: "classpath:consumer-private-key.pem"
-#            private-key-password: "password"
-#          truststore:
-#            certificate: "classpath:apicert.pem"
-
 ---
 
 spring:
@@ -31,7 +20,6 @@ emoji:
 mtls:
   enabled: true
   private-key-passwd: "password"
-
 
 ---
 
