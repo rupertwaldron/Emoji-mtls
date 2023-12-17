@@ -54,4 +54,6 @@ once the mtls-client-lib is brought in:
         "mtls.enabled=true",
         "mtls.private-key-passwd=password"
 ```
-where `password` is the password using used when creating the public-private keypair
+where `password` is the password using used when creating the public-private keypair.
+
+The mtls-client-lib provides the mtlsRestTemplate for the clients to communicate using mtls easily.
