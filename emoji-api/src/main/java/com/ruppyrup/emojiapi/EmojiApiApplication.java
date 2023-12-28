@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EmojiApiApplication {
 
     public static void main(String[] args) {
+        System.out.println("Starting Emoji Application");
         SpringApplication.run(EmojiApiApplication.class, args);
     }
 
