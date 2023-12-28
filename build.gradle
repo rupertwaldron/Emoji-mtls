@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.wrapper.Wrapper
+
 plugins {
     id 'java'
     id 'application'
@@ -15,4 +17,9 @@ allprojects {
 
 subprojects {
     version '1.0-SNAPSHOT'
+}
+
+wrapper {
+    gradleVersion '8.5'
+    setDistributionType Wrapper.DistributionType.ALL
 }
